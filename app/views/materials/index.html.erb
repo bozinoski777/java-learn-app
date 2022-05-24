@@ -1,0 +1,8 @@
+<ul>
+  <% @materials.each do |material| %>
+    <h1><%= material.category %></h1>
+    <h3><%= material.sub_category %></h3>
+    <h3><%= material.title %></h3>
+    <p><%= material.content %></p>
+  <% end %>
+</ul>
