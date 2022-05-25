@@ -30,9 +30,9 @@ Material.create!([
     {category: "Java Building Blocks",
     sub_category: "Understanding the Java Class Structure",
     title: "Comments",
-    content: "- Single line - begin with two slashes `//`.
-    - Multi line - begin with `/*` and end with `*/`.
-    - Java-doc - begins with `/**` and ends with `*/`. It is special and understood by the Java-doc tool."},
+    content: "- Single line - begin with two slashes <code>//</code>.<br>
+    - Multi line - begin with <code>/*</code> and end with <code>*/</code>.<br>
+    - Java-doc - begins with <code>/**</code> and ends with <code>*/</code>. It is special and understood by the Java-doc tool."},
     {category: "Core Java APIs",
     sub_category: "Understanding Java Arrays",
     title: "Creating an Array of Primitives",
@@ -40,9 +40,9 @@ Material.create!([
     {category: "Core Java APIs",
     sub_category: "Understanding Java Arrays",
     title: "Creating an Array of Primitives",
-    content: "int[] numbers2 = new int[] {42, 33, 32}; - specifies the capacity and the initial values."},
+    content: "<code>int[] numbers2 = new int[] {42, 33, 32}; </code> - specifies the capacity and the initial values."},
     {category: "Core Java APIs",
     sub_category: "Understanding Java Arrays",
     title: "Creating an Array of Primitives",
-    content: "Legal ways: int[] numAnimals; int [] numAnimals; int numAnimals[]; int numAnimals [];."}
+    content: "Legal ways: <code>int[] numAnimals;</code> <code>int [] numAnimals;</code> <code>int numAnimals[];</code> <code>int numAnimals [];</code>."}
 ])

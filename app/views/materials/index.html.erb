@@ -1,8 +1,34 @@
-<ul>
-  <% @materials.each do |material| %>
-    <h1><%= material.category %></h1>
-    <h3><%= material.sub_category %></h3>
-    <h3><%= material.title %></h3>
-    <p><%= material.content %></p>
-  <% end %>
-</ul>
+
+<% @materials.uniq(&:category).each do |category| %>
+  <h1 class="text-center"><%= category.category%></h1>
+   <% @materials.each do |material| %>
+  <% if category.category == material.category %>
+  
+  <div class="card-material">
+    <div class="container-fluid">
+      <div class="card-material-infos">
+        <p><%= material.sub_category %> - <%= material.title %></p>
+        <h2><%= material.content.html_safe %></h2>
+      
+    <div class="row mt-2 mb-2" style="height: 30px;">
+      <div class="col-md-3 position-relative">
+      <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam position-absolute top-50 start-50 translate-middle"></i>
+      </div>
+      <div class="col-md-3 position-relative">
+      <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam-sweat position-absolute top-50 start-50 translate-middle"></i>
+      </div>
+      <div class="col-md-3 position-relative">
+      <i style="font-size: 30px;" class="fa-solid fa-face-grimace position-absolute top-50 start-50 translate-middle"></i>
+      </div>
+      <div class="col-md-3 position-relative">
+      <i style="font-size: 30px;" class="fa-solid fa-face-frown position-absolute top-50 start-50 translate-middle"></i>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+    
+  <% end  %>
+<% end %>
+<% end%>
+
