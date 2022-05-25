@@ -12,16 +12,44 @@
       
     <div class="row mt-2 mb-2" style="height: 30px;">
       <div class="col-md-3 position-relative">
-      <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam position-absolute top-50 start-50 translate-middle"></i>
+        <%= simple_form_for(@reportcard) do |f| %>
+          <%= f.hidden_field :material_confidece, value: 100 %>
+          <%= f.hidden_field :material_id, value: material.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+            <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam position-absolute top-50 start-50 translate-middle"></i>
+          <% end %>
+        <% end %>
       </div>
       <div class="col-md-3 position-relative">
-      <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam-sweat position-absolute top-50 start-50 translate-middle"></i>
+        <%= simple_form_for(@reportcard) do |f| %>
+          <%= f.hidden_field :material_confidece, value: 75 %>
+          <%= f.hidden_field :material_id, value: material.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+            <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam-sweat position-absolute top-50 start-50 translate-middle"></i>
+          <% end %>
+        <% end %>
       </div>
       <div class="col-md-3 position-relative">
-      <i style="font-size: 30px;" class="fa-solid fa-face-grimace position-absolute top-50 start-50 translate-middle"></i>
+        <%= simple_form_for(@reportcard) do |f| %>
+          <%= f.hidden_field :material_confidece, value: 25 %>
+          <%= f.hidden_field :material_id, value: material.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+            <i style="font-size: 30px;" class="fa-solid fa-face-grimace position-absolute top-50 start-50 translate-middle"></i>
+          <% end %>
+        <% end %>
       </div>
       <div class="col-md-3 position-relative">
-      <i style="font-size: 30px;" class="fa-solid fa-face-frown position-absolute top-50 start-50 translate-middle"></i>
+        <%= simple_form_for(@reportcard) do |f| %>
+          <%= f.hidden_field :material_confidece, value: 0 %>
+          <%= f.hidden_field :material_id, value: material.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+            <i style="font-size: 30px;" class="fa-solid fa-face-frown position-absolute top-50 start-50 translate-middle"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
     </div>

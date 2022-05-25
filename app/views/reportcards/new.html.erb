@@ -1,0 +1,7 @@
+<%= simple_form_for(@reportcard) do |f| %>
+  <%= f.input :material_confidece %>
+  <%= f.check_box :is_known,  checked: true %>
+  <%= f.input :material_id %>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+  <%= f.submit %>
+<% end %>
