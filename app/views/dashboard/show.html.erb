@@ -1,7 +1,30 @@
-<h1>DASHBOARD</h1>
-<% @reportcards.each do |card| %>
-    <h1> <%= card.material_confidece %> </h1>
-         <% material = @materials.find(card.material_id) %>
-    <h3> <%= material.category %> </h3>
-    <p> <%= material.content %> </p>
-<% end %>
+ <h1 class="text-center">Dashboard</h1>
+<% @reportcards.uniq(&:material_confidece).each do |material_confidece| %>
+    <div class="text-center" style="position: relative;">
+        <% case material_confidece.material_confidece  %>
+        <% when 0 %>
+            <i style="font-size: 60px; position: relative; top: 30px;" class="fa-solid fa-face-frown translate-middle"></i>
+        <% when 25 %>
+            <i style="font-size: 60px; position: relative; top: 30px;" class="fa-solid fa-face-grimace translate-middle"></i>
+        <% when 75 %>
+            <i style="font-size: 60px; position: relative; top: 30px;" class="fa-solid fa-face-grin-beam-sweat translate-middle"></i>
+        <% when 100 %>
+            <i style="font-size: 60px; position: relative; top: 30px;" class="fa-solid fa-face-grin-beam translate-middle"></i>
+        <% end %>
+    </div>
+     <% @reportcards.each do |obj| %>
+        <% if obj.material_confidece == material_confidece.material_confidece %> 
+        <% material_id = obj.material_id  %>
+            <div class="card-material">
+                <div class="container-fluid">
+                <div class="card-material-infos">
+                    <% material = @materials.find(material_id) %>
+                    <p> <%= material.category %> </p>
+                    <h3> <%= material.content.html_safe %> </h3>
+                </div>
+                </div>
+            </div>
+        <% end  %>
+    <% end %>
+<% end%>
+
