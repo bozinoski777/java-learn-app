@@ -6,12 +6,19 @@ class ReportcardsController < ApplicationController
 
     def create
       @reportcard = Reportcard.new(reportcard_params)
-      @reportcard.save
-      if @reportcard.save
-        redirect_to materials_path
+      
+      if Reportcard.find(reportcard_params[:material_id])
+        @reportcard = Reportcard.find(reportcard_params[:material_id])
+        @reportcard.update(reportcard_params)
       else
-        render :new
+        @reportcard.save
       end
+
+      # if @reportcard.save
+      #   redirect_to materials_path
+      # else
+      #   render :new
+      # end
     end
 
     private

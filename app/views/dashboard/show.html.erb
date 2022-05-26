@@ -1,0 +1,7 @@
+<h1>DASHBOARD</h1>
+<% @reportcards.each do |card| %>
+    <h1> <%= card.material_confidece %> </h1>
+         <% material = @materials.find(card.material_id) %>
+    <h3> <%= material.category %> </h3>
+    <p> <%= material.content %> </p>
+<% end %>

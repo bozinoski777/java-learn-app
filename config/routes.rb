@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
+  get 'dashboard', to: 'dashboard#show'
   # get "materials", to: "materials#index"
   resources :materials
   resources :reportcards
