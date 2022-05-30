@@ -7,8 +7,8 @@ class ReportcardsController < ApplicationController
     def create
       @reportcard = Reportcard.new(reportcard_params)
       
-      if Reportcard.find(reportcard_params[:material_id])
-        @reportcard = Reportcard.find(reportcard_params[:material_id])
+      if Reportcard.where(:material_id => reportcard_params[:material_id]).exists?
+        @reportcard = Reportcard.where(:material_id => reportcard_params[:material_id])
         @reportcard.update(reportcard_params)
       else
         @reportcard.save

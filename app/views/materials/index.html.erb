@@ -1,62 +1,74 @@
+<ul class="nav nav-tabs">
+  <% @materials.uniq(&:category).each do |category| %>
+    <li class="nav-item">
+      <div class="nav-link <%= params[:category] == category.category ? "active" : "" %>" >
+        <%= link_to category.category, :params => { category: category.category }%> 
+      </div>
+    </li>
+  <% end %>
+</ul>
+<h1 class="text-center"><%= params[:category] %></h1>
+<div class="col-8 offset-2 justify-content-center">
 
-<% @materials.uniq(&:category).each do |category| %>
-  <h1 class="text-center"><%= category.category%></h1>
-   <% @materials.each do |material| %>
-  <% if category.category == material.category %>
-  
-  <div class="card-material">
-    <div class="container-fluid">
-      <div class="card-material-infos">
-        <p><%= material.sub_category %> - <%= material.title %></p>
-        <h2><%= material.content.html_safe %></h2>
-      
-    <div class="row mt-2 mb-2" style="height: 30px;">
-      <div class="col-md-3 position-relative">
-        <%= simple_form_for(@reportcard) do |f| %>
-          <%= f.hidden_field :material_confidece, value: 100 %>
-          <%= f.hidden_field :material_id, value: material.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
-            <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam position-absolute top-50 start-50 translate-middle"></i>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="col-md-3 position-relative">
-        <%= simple_form_for(@reportcard) do |f| %>
-          <%= f.hidden_field :material_confidece, value: 75 %>
-          <%= f.hidden_field :material_id, value: material.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
-            <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam-sweat position-absolute top-50 start-50 translate-middle"></i>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="col-md-3 position-relative">
-        <%= simple_form_for(@reportcard) do |f| %>
-          <%= f.hidden_field :material_confidece, value: 25 %>
-          <%= f.hidden_field :material_id, value: material.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
-            <i style="font-size: 30px;" class="fa-solid fa-face-grimace position-absolute top-50 start-50 translate-middle"></i>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="col-md-3 position-relative">
-        <%= simple_form_for(@reportcard) do |f| %>
-          <%= f.hidden_field :material_confidece, value: 0 %>
-          <%= f.hidden_field :material_id, value: material.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
-            <i style="font-size: 30px;" class="fa-solid fa-face-frown position-absolute top-50 start-50 translate-middle"></i>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    </div>
-    </div>
-  </div>
-    
-  <% end  %>
-<% end %>
+<% @materials.uniq(&:sub_category).each do |sub_category| %>
+  <% if params[:category] == sub_category.category %>
+      <h2 class=""><%= sub_category.sub_category.html_safe %></h2>
+    <% end %>
+    <% @materials.each do |material| %>
+      <% if params[:category] == material.category && if sub_category.sub_category == material.sub_category%> 
+        <div class="card-material">
+          <div class="container-fluid">
+            <div class="card-material-infos">
+              <p><%= material.title.html_safe %></p>
+              <h2><%= material.content.html_safe %></h2>
+              <div class="row mt-2 mb-2" style="height: 30px;">
+                <div class="col-md-3 position-relative">
+                  <%= simple_form_for(@reportcard) do |f| %>
+                    <%= f.hidden_field :material_confidece, value: 100 %>
+                    <%= f.hidden_field :material_id, value: material.id %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+                      <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam position-absolute top-50 start-50 translate-middle"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col-md-3 position-relative">
+                  <%= simple_form_for(@reportcard) do |f| %>
+                    <%= f.hidden_field :material_confidece, value: 75 %>
+                    <%= f.hidden_field :material_id, value: material.id %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+                      <i style="font-size: 30px;" class="fa-solid fa-face-grin-beam-sweat position-absolute top-50 start-50 translate-middle"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col-md-3 position-relative">
+                  <%= simple_form_for(@reportcard) do |f| %>
+                    <%= f.hidden_field :material_confidece, value: 25 %>
+                    <%= f.hidden_field :material_id, value: material.id %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+                      <i style="font-size: 30px;" class="fa-solid fa-face-grimace position-absolute top-50 start-50 translate-middle"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col-md-3 position-relative">
+                  <%= simple_form_for(@reportcard) do |f| %>
+                    <%= f.hidden_field :material_confidece, value: 0 %>
+                    <%= f.hidden_field :material_id, value: material.id %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;" do %>
+                      <i style="font-size: 30px;" class="fa-solid fa-face-frown position-absolute top-50 start-50 translate-middle"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end  %>
+    <% end %>
+  <% end %>
 <% end%>
+</end>
 
