@@ -11,3 +11,11 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+body {
+    background-color: white;
+}
+
+.underline {
+    text-decoration: underline;
+} 
