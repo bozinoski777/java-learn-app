@@ -27,13 +27,16 @@
       <% @materials.uniq(&:sub_category).each do |sub_category| %>
         <% if params[:category] == sub_category.category %>
             <h2 class="pt-4"><%= sub_category.sub_category.html_safe %></h2>
-          <% end %>
+        <% end %>
+        <% banana = [] %>
           <% @materials.each do |material| %>
             <% if params[:category] == material.category && if sub_category.sub_category == material.sub_category%> 
+            <p><%= banana.include?(material.title) ? "" : material.title.html_safe %></p>
+              <% banana << material.title %> 
               <div class="card-material">
                 <div class="container-fluid">
                   <div class="card-material-infos">
-                    <p><%= material.title.html_safe %></p>
+                    <p><%#= material.title.html_safe %></p>
                     <h2><%= material.content.html_safe %></h2>
                     <div class="row mt-2 mb-2" style="height: 30px;">
                       <div class="col-md-3 position-relative">

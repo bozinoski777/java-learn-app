@@ -1,8 +1,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<h1 class="text-center">Dashboard</h1>
+<h1 class="m-4 text-center">Dashboard</h1>
 <div class="col-8 offset-2 justify-content-center">
-    <div>
-        <canvas id="myChart"></canvas>
+    <div class="row">
+        <div class="col-6">
+            <canvas style="max-height: 400px;" id="confidenceChart"></canvas>
+        </div>
+        <div class="col-6">
+            <canvas style="max-height: 400px;" id="completionChart"></canvas>
+        </div>
     </div>
     <% @reportcards.uniq(&:material_confidece).each do |material_confidece| %>
         <div class="text-center m-3" style="position: relative;">
@@ -36,29 +41,57 @@
     <% end%>
 
     <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+    let confidenceCtx = document.getElementById('confidenceChart').getContext('2d');
+    let confidenceChart = new Chart(confidenceCtx, {
         type: 'pie',
         data: {
             labels: ['Very Confident', 'Somewhat Confident', 'Little Confident', 'Not Confident'],
             datasets: [{
                 data: [ <%= @veryConfident %> , <%= @somewhatConfident %>, <%= @littleConfident %>, <%= @notConfident %>],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    '#CF1B2A',
+                    '#EE7D01',
+                    '#999999',
+                    '#E78195'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    '#EDEDED'
                 ],
                 borderWidth: 1
             }]
         },
         options: {
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    let completionCtx = document.getElementById('completionChart').getContext('2d');
+    let completionChart = new Chart(completionCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Reviewed', 'Not Reviewed'],
+            datasets: [{
+                data: [ <%= @reviewedMaterial %> , <%= @notReviewedMaterial %> ],
+                backgroundColor: [
+                    '#DE1E23',
+                    '#F27100'
+                ],
+                borderColor: [
+                    '#EDEDED'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
         }
     });
     </script>

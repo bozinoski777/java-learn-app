@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">                    
           <li class="nav-item">
-              <%= link_to "Mein Dashboard", "/dashboard", class: "nav-link" %>
+            <a class="nav-link" data-turbolinks="false" href="/dashboard">Mein Dashboard</a>
           </li>                         
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
