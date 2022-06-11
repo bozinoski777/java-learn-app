@@ -6,10 +6,56 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Flashcard.create!(
-    category: "Exceptions",
-    question: "Understanding Exceptions",
-    answer: "The Role of Exceptions")
+Flashcard.create!([
+    {category: "Exceptions",
+    question: "111 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "222 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "333 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "444 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "555 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "666 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "777 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "888 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "999 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "000 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "1212 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "13131 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "141414 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "161616 Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "7117171` Exceptions",
+    answer: "The Role of Exceptions"},
+    {category: "Exceptions",
+    question: "811881 Exceptions",
+    answer: "The Role of Exceptions"}
+    ])
 
 
 puts "Creating: Java Building Blocks"

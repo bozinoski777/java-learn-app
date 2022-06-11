@@ -23,7 +23,7 @@ class ReportcardsController < ApplicationController
     private
 
     def reportcard_params
-      params.require(:reportcard).permit(:material_confidece, :is_known, :material_id, :user_id)
+      params.require(:reportcard).permit(:id, :material_confidece, :is_known, :material_id, :user_id)
     end
 
 end

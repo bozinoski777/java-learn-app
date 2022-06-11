@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
     def show
         @reportcards = Reportcard.where(user_id: current_user)
+        @flashcards = Flashcard.all
         @materials = Material.all
         @notReviewedMaterial = @materials.count - @reportcards.count
         @reviewedMaterial = @reportcards.count
