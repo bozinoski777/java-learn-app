@@ -5,22 +5,16 @@
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .card-material h2 {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
   }
   
   .card-material p {
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: .7;
-    margin-bottom: 0;
-    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
   }
   
 code {

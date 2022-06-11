@@ -1,0 +1,20 @@
+.rating_card {
+    height: 0px;
+    opacity: 0;
+    transition: 0.1s;
+}
+
+.card-material:hover {
+    .rating_card {
+        height: 30px;
+        opacity: 100;
+        transition: 0.3s;
+        margin: 0px;
+    }
+}
+
+.rating_card_frozen {
+    height: 30px;
+    opacity: 100;
+    margin: 0px;
+}
