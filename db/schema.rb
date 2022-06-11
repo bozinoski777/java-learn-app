@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_25_112318) do
+ActiveRecord::Schema.define(version: 2022_06_11_120338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "flashcards", force: :cascade do |t|
+    t.string "question"
+    t.string "answer"
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "reportcard_id"
+    t.index ["reportcard_id"], name: "index_flashcards_on_reportcard_id"
+  end
 
   create_table "materials", force: :cascade do |t|
     t.string "title"
@@ -47,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_05_25_112318) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "flashcards", "reportcards"
   add_foreign_key "reportcards", "materials"
   add_foreign_key "reportcards", "users"
 end

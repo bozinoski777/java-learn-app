@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   # get "materials", to: "materials#index"
   resources :materials
   resources :reportcards
+  resources :flashcards
 
 end

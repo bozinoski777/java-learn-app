@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Flashcard.create!(
+    category: "Exceptions",
+    question: "Understanding Exceptions",
+    answer: "The Role of Exceptions")
+
+
 puts "Creating: Java Building Blocks"
 Material.create!([
     {category: "Java Building Blocks",
@@ -2624,6 +2630,7 @@ Material.create!([
 
 puts "😊😊😊😊😊😊😊😊😊😊😊Created: Exceptions"
 
+puts "😊Creating: Flipcards"
 
 
 puts "😀😀😀😀😀😀😀😀😀😀😀😀Database Seed Completed!"
