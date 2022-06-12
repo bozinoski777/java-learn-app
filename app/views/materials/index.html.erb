@@ -37,14 +37,14 @@
                 <div class="container-fluid">
                   <div class="card-material-infos">
                     <p><%= material.content.html_safe %></p>
-                    <div class="<%= @reportcards.exists?(material_id: material.id) ? "rating_card_frozen" : "rating_card" %> row" data-id="<%= material.id%>">
+                    <div class="<%= @mreports.exists?(material_id: material.id, :user_id => current_user.id) ? "rating_card_frozen" : "rating_card" %> row" data-id="<%= material.id%>">
                       <div class="col-md-3 position-relative">
-                        <%= simple_form_for(@reportcard) do |f| %>
+                        <%= simple_form_for(@mreport) do |f| %>
                           <%= f.hidden_field :material_confidece, value: 100 %>
                           <%= f.hidden_field :material_id, value: material.id %>
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
-                            <% if @reportcards.exists?(material_id: material.id) && @reportcards.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 100 %>
+                            <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 100 %>
                               <i style="font-size: 30px;" data-id="<%= material.id %>" class="smileyButton fa-regular fa-face-grin-beam position-absolute top-50 start-50 translate-middle text-warning"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id %>" class="smileyButton fa-regular fa-face-grin-beam position-absolute top-50 start-50 translate-middle"></i>
@@ -53,12 +53,12 @@
                         <% end %>
                       </div>
                       <div class="col-md-3 position-relative">
-                        <%= simple_form_for(@reportcard) do |f| %>
+                        <%= simple_form_for(@mreport) do |f| %>
                           <%= f.hidden_field :material_confidece, value: 75 %>
                           <%= f.hidden_field :material_id, value: material.id %>
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
-                            <% if @reportcards.exists?(material_id: material.id) && @reportcards.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 75 %>
+                            <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 75 %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-smile position-absolute top-50 start-50 translate-middle text-warning"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-smile position-absolute top-50 start-50 translate-middle"></i>
@@ -67,12 +67,12 @@
                         <% end %>
                       </div>
                       <div class="col-md-3 position-relative">
-                        <%= simple_form_for(@reportcard) do |f| %>
+                        <%= simple_form_for(@mreport) do |f| %>
                           <%= f.hidden_field :material_confidece, value: 25 %>
                           <%= f.hidden_field :material_id, value: material.id %>
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
-                            <% if @reportcards.exists?(material_id: material.id) && @reportcards.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 25 %>
+                            <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 25 %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-meh position-absolute top-50 start-50 translate-middle text-warning"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-meh position-absolute top-50 start-50 translate-middle"></i>
@@ -81,12 +81,12 @@
                         <% end %>
                       </div>
                       <div class="col-md-3 position-relative">
-                        <%= simple_form_for(@reportcard) do |f| %>
+                        <%= simple_form_for(@mreport) do |f| %>
                           <%= f.hidden_field :material_confidece, value: 0 %>
                           <%= f.hidden_field :material_id, value: material.id %>
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
-                            <% if @reportcards.exists?(material_id: material.id) && @reportcards.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 0 %>
+                            <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 0 %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-frown position-absolute top-50 start-50 translate-middle text-warning"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-frown position-absolute top-50 start-50 translate-middle"></i>

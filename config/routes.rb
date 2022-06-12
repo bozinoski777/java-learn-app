@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   get 'dashboard', to: 'dashboard#show'
   # get "materials", to: "materials#index"
-  resources :materials
   resources :reportcards
+  resources :mreports
+  resources :freports
+  resources :materials
   resources :flashcards
 
 end

@@ -1,30 +1,28 @@
 class FlashcardsController < ApplicationController
 
     def show
-        
         @flashcard = Flashcard.find(params[:id])
-
-        @reportcard = Reportcard.new
+        @freport = Reportcard.new
     end
 
+    def new
+        @freport = Freport.new
+    end
+  
     def create
-        @reportcard = Reportcard.new
-
-        if Reportcard.where(:material_id => params[:flashcard_id]).exists?
-            @reportcard = Reportcard.where(:id => params[:id])
-            @reportcard.update!(params)
+        @freport = Freport.new(freport_params)
+        @freport.save
+        if @freport.save
+            redirect_to materials_path
         else
-            @reportcard.save
+            render :new
         end
-    
-
     end
-
 
     private
 
-    # def reportcard_params
-    #   params.require(:reportcard).permit(:is_known, :user_id)
-    # end
+    def freport_params
+    params.require(:mreport).permit(:material_confidece, :is_known, :material_id, :user_id)
+    end
 
 end

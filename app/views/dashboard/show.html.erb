@@ -11,7 +11,7 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <% @reportcards.uniq(&:material_confidece).each do |material_confidece| %>
+            <% @mreports.uniq(&:material_confidece).each do |material_confidece| %>
                 <div class="text-center m-3" style="position: relative;">
                     <% case material_confidece.material_confidece  %>
                     <% when 0 %>
@@ -26,7 +26,7 @@
                 </div>
 
 
-            <% @reportcards.each do |obj| %>
+            <% @mreports.each do |obj| %>
                 <% if obj.material_confidece == material_confidece.material_confidece %> 
                     <% material_id = obj.material_id  %>
                         <div class="card-material">
@@ -45,7 +45,7 @@
         <div class="col-6">
             <h1>KATEIKARTEN</h1>
 
-            <% @reportcards.each do |obj| %>
+            <% @freports.each do |obj| %>
                 <% if obj.is_known == true %> 
                 <h2>ICH WEISS</h2>
                     <% material_id = obj.material_id  %>

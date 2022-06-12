@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_11_120338) do
+ActiveRecord::Schema.define(version: 2022_06_12_110549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2022_06_11_120338) do
     t.index ["reportcard_id"], name: "index_flashcards_on_reportcard_id"
   end
 
+  create_table "freports", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "flashcards_id", null: false
+    t.boolean "is_known"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flashcards_id"], name: "index_freports_on_flashcards_id"
+    t.index ["user_id"], name: "index_freports_on_user_id"
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "title"
     t.string "content"
@@ -32,6 +42,16 @@ ActiveRecord::Schema.define(version: 2022_06_11_120338) do
     t.string "sub_category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mreports", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "material_id", null: false
+    t.integer "material_confidece"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["material_id"], name: "index_mreports_on_material_id"
+    t.index ["user_id"], name: "index_mreports_on_user_id"
   end
 
   create_table "reportcards", force: :cascade do |t|
@@ -58,6 +78,10 @@ ActiveRecord::Schema.define(version: 2022_06_11_120338) do
   end
 
   add_foreign_key "flashcards", "reportcards"
+  add_foreign_key "freports", "flashcards", column: "flashcards_id"
+  add_foreign_key "freports", "users"
+  add_foreign_key "mreports", "materials"
+  add_foreign_key "mreports", "users"
   add_foreign_key "reportcards", "materials"
   add_foreign_key "reportcards", "users"
 end
