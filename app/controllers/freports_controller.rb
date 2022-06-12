@@ -12,6 +12,12 @@ class FreportsController < ApplicationController
         else
             @freport.save
         end
+
+        if freport_params[:flashcards_id].to_i < Flashcard.count
+            redirect_to "/flashcards/#{freport_params[:flashcards_id].to_i + 1}"
+        else
+            redirect_to "/flashcards/#{Freport.where(:is_known => "false").first.id - 1}"
+        end
     end
 
     private
