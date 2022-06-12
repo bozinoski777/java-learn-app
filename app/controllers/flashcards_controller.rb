@@ -2,7 +2,7 @@ class FlashcardsController < ApplicationController
 
     def show
         @flashcard = Flashcard.find(params[:id])
-        @freport = Reportcard.new
+        @freport = Freport.new
     end
 
     def new

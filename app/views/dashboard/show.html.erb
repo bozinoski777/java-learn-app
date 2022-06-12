@@ -48,11 +48,11 @@
             <% @freports.each do |obj| %>
                 <% if obj.is_known == true %> 
                 <h2>ICH WEISS</h2>
-                    <% material_id = obj.material_id  %>
+                    <% flashcards_id = obj.flashcards_id  %>
                     <div class="card-material">
                         <div class="container-fluid">
                         <div class="card-material-infos">
-                            <% material = @flashcards.find(material_id) %>
+                            <% material = @flashcards.find(flashcards_id) %>
                             <p> <%= material.question %> </p>
                             <h3> <%= material.answer.html_safe %> </h3>
                         </div>
@@ -60,11 +60,11 @@
                     </div>
                 <% elsif obj.is_known == false %>
                 <h2>ICH WEISS NICHT</h2>
-                    <% material_id = obj.material_id  %>
+                    <% flashcards_id = obj.flashcards_id  %>
                     <div class="card-material">
                         <div class="container-fluid">
                         <div class="card-material-infos">
-                            <% material = @flashcards.find(material_id) %>
+                            <% material = @flashcards.find(flashcards_id) %>
                             <p> <%= material.question %> </p>
                             <h3> <%= material.answer.html_safe %> </h3>
                         </div>

@@ -1,4 +1,4 @@
-class freportsController < ApplicationController
+class FreportsController < ApplicationController
 
     def new
         @freport = Freport.new
@@ -6,8 +6,8 @@ class freportsController < ApplicationController
 
     def create
         @freport = Freport.new(freport_params)
-        if Freport.where(:material_id => freport_params[:material_id], :user_id => current_user.id).exists?
-            @freport = Freport.where(:material_id => freport_params[:material_id], :user_id => current_user.id)
+        if Freport.where(:flashcards_id => freport_params[:flashcards_id], :user_id => current_user.id).exists?
+            @freport = Freport.where(:flashcards_id => freport_params[:flashcards_id], :user_id => current_user.id)
             @freport.update(freport_params)
         else
             @freport.save
@@ -17,6 +17,6 @@ class freportsController < ApplicationController
     private
 
     def freport_params
-    params.require(:freport).permit(:id, :material_confidece, :is_known, :material_id, :user_id)
+    params.require(:freport).permit(:id, :material_confidece, :is_known, :flashcards_id, :user_id)
     end
 end

@@ -10,20 +10,17 @@
         </div>
     </div>
 </div>
-        <div class="d-flex justify-content-center">
-
-                    <%= simple_form_for(@freport) do |f| %>
-                        <%= f.hidden_field :is_known, value: true %>
-                        <%= f.hidden_field :material_id, value: @flashcard.id %>
-                        <%= f.hidden_field :user_id, value: current_user.id %>
-                        <%= button_tag "Ich Wusste es!", type: 'submit', class: "button btn-success", remote: true %>
-                    <% end %>
-                    <%= simple_form_for(@freport) do |f| %>
-                        <%= f.hidden_field :is_known, value: false %>
-                        <%= f.hidden_field :material_id, value: @flashcard.id %>
-                        <%= f.hidden_field :user_id, value: current_user.id %>
-                        <%= button_tag "Ich Wusste NICHT!", type: 'submit', class: "button btn-danger", remote: true %>
-                    <% end %>
-
-
-        </div>
+<div class="d-flex justify-content-center">
+    <%= simple_form_for(@freport) do |f| %>
+        <%= f.hidden_field :is_known, value: true %>
+        <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= button_tag "Ich Wusste es!", type: 'submit', class: "button btn-success", remote: true %>
+    <% end %>
+    <%= simple_form_for(@freport) do |f| %>
+        <%= f.hidden_field :is_known, value: false %>
+        <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= button_tag "Ich Wusste NICHT!", type: 'submit', class: "button btn-danger", remote: true %>
+    <% end %>
+</div>
