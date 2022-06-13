@@ -13,10 +13,15 @@ class FreportsController < ApplicationController
             @freport.save
         end
 
-        if freport_params[:flashcards_id].to_i < Flashcard.count
+        sum_fcards = Flashcard.count
+        if Freport.where(:user_id => current_user.id).count < sum_fcards
             redirect_to "/flashcards/#{freport_params[:flashcards_id].to_i + 1}"
+        elsif Freport.where(:user_id => current_user.id, :is_known => "true").count == sum_fcards
+            randomFcard = rand(1..sum_fcards)
+            redirect_to"/flashcards/#{ randomFcard == freport_params[:flashcards_id].to_i ? rand(1..sum_fcards) : randomFcard}"
         else
-            redirect_to "/flashcards/#{Freport.where(:is_known => "false").first.id - 1}"
+            randomFcard = rand(1..sum_fcards)
+                redirect_to "/flashcards/#{Freport.where(:is_known => "false", :user_id => current_user.id).last.flashcards_id}"
         end
     end
 
