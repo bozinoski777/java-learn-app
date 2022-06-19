@@ -12,7 +12,7 @@
 
           </div>
           <textarea data-flashcards-animation-target="userGuess" class="form-control" id="user-guess-text-area" autofocus="" rows="4" placeholder="Enter your answer here (alt + enter to flip card)" data-dashlane-rid="c7af76ab7914eb53" data-form-type=""></textarea>
-          <button class="btn btn-info flip-button" data-action="click->flashcards-animation#flipCard" data-dashlane-label="true" data-dashlane-rid="47ebc8d074639084" data-form-type="">
+          <button id="flip" class="btn btn-info flip-button" data-action="click->flashcards-animation#flipCard" data-dashlane-label="true" data-dashlane-rid="47ebc8d074639084" data-form-type="">
             <i class="fa-solid fa-arrows-rotate"></i> flip card
           </button>
         </div>
@@ -21,7 +21,7 @@
 
 
 <div class="mt-5 row justify-content-center" >
-    <div class="flip-card">
+    <div id="flip-card" class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
             <h1><%= @flashcard.question.html_safe %></h1>
@@ -46,3 +46,13 @@
         <%= button_tag "Ich Wusste NICHT!", type: 'submit', class: "button btn-danger", remote: true %>
     <% end %>
 </div>
+<script>
+ let button = document.getElementById("flip");
+
+    button.addEventListener('click', function(event) {
+      let stuff = document.getElementById("flip-card");
+      stuff.classList.toggle("thisss");
+
+    })
+
+  </script>
