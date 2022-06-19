@@ -1,12 +1,33 @@
+<div class="container">
 <%= render "shared/progressbar", correct: @correctFlash, total: @totalFlash, ratio: @ratioFl %>
+    <div class="flashcard-container">
+        <div class="flashcard-game-card-header">
+            <div class="flashcard-game-card-title">
+                <h4><%=@flashcard.category %></h4>
+            </div>
+        </div>
+        <div class="flashcard-game-card-content" data-dashlane-rid="514e638eb34943d8" data-form-type="">
+          <div class="flashcard-game-card-content-markdown">
+            <p><%= @flashcard.question.html_safe %></p>
+
+          </div>
+          <textarea data-flashcards-animation-target="userGuess" class="form-control" id="user-guess-text-area" autofocus="" rows="4" placeholder="Enter your answer here (alt + enter to flip card)" data-dashlane-rid="c7af76ab7914eb53" data-form-type=""></textarea>
+          <button class="btn btn-info flip-button" data-action="click->flashcards-animation#flipCard" data-dashlane-label="true" data-dashlane-rid="47ebc8d074639084" data-form-type="">
+            <i class="fa-solid fa-arrows-rotate"></i> flip card
+          </button>
+        </div>
+    </div>
+</div>
+
+
 <div class="mt-5 row justify-content-center" >
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-            <h1><%= @flashcard.question %></h1>
+            <h1><%= @flashcard.question.html_safe %></h1>
             </div>
             <div class="flip-card-back">
-            <h1><%= @flashcard.answer %></h1>
+            <h1><%= @flashcard.answer.html_safe %></h1>
             </div>
         </div>
     </div>
