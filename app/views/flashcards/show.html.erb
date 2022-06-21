@@ -1,74 +1,89 @@
 <div class="container">
-<%= render "shared/progressbar", correct: @correctFlash, total: @totalFlash, ratio: @ratioFl %>
-    <div class="mt-5 row justify-content-center" >
+    <%= render "shared/progressbar", correct: @correctFlash, total: @totalFlash, ratio: @ratioFl %>
+    <div class="mt-5 row justify-content-center">
         <div id="flip-card" class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <div class="flashcard-container">
-                            <div class="flashcard-game-card-header">
-                                <div class="flashcard-game-card-title">
-                                    <h4><%=@flashcard.category %></h4>
-                                </div>
-                            </div>
-                            <div class="flashcard-game-card-content" >
-                                <div class="flashcard-game-card-content-markdown">
-                                <p><%= @flashcard.question.html_safe %></p>
-
-                                </div>
-                                <textarea data-flashcards-animation-target="userGuess" class="form-control" id="user-guess-text-area" autofocus="" rows="4" placeholder="Schreibe deine Antwort hier(Enter)" data-dashlane-rid="c7af76ab7914eb53" data-form-type=""></textarea>
-                                <button id="flip" class="flip btn btn-info flip-button">
-                                    <i class="fa-solid fa-arrows-rotate"></i> flip card
-                                </button>
+                        <div class="flashcard-game-card-header">
+                            <div class="flashcard-game-card-title">
+                                <h4><%=@flashcard.category %></h4>
                             </div>
                         </div>
+                        <div class="flashcard-game-card-content">
+                            <div class="flashcard-game-card-content-markdown">
+                                <p><%= @flashcard.question.html_safe %></p>
+                            </div>
+                            <textarea class="form-control" id="user-guess-text-area" rows="4" placeholder="Schreibe deine Antwort hier(Enter)"></textarea>
+                            <button class="flip btn btn-info flip-button">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                                flip card
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="flip-card-back">
-                <h1><%= @flashcard.answer.html_safe %></h1>
-                <h2 id="guessDestination"></h2>
-                    <button id="flip" class="flip btn btn-info flip-button">
-                        <i class="fa-solid fa-arrows-rotate"></i> flip card
-                    </button>
+                    <div class="flashcard-container">
+                        <div class="flashcard-game-card-header">
+                            <div class="flashcard-game-card-title">
+                                <h4><%=@flashcard.category %></h4>
+                            </div>
+                        </div>
+                        <div class="flashcard-game-card-content">
+                            <div class="flashcard-game-card-content-markdown">
+                                <p><%=  @flashcard.answer.html_safe %></p>
+                            </div>
+                            <p></p>
+                            <p id="guessDestination"></p>
+                            <button class="flip btn btn-info flip-button">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                                flip card
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="d-flex justify-content-center">
-    <%= simple_form_for(@freport) do |f| %>
-        <%= f.hidden_field :is_known, value: true %>
-        <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= button_tag "Ich Wusste es!", type: 'submit', class: "button btn-success", remote: true %>
-    <% end %>
-    <%= simple_form_for(@freport) do |f| %>
-        <%= f.hidden_field :is_known, value: false %>
-        <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= button_tag "Ich Wusste NICHT!", type: 'submit', class: "button btn-danger", remote: true %>
-    <% end %>
+<div class="mt-4 container">
+    <div id="buttonsDiv" class="mt-5 d-flex justify-content-center buttonsDiv">
+        <%= simple_form_for(@freport) do |f| %>
+            <%= f.hidden_field :is_known, value: true %>
+            <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= button_tag "Ich Wusste es!", type: 'submit', class: "button btn-success", remote: true %>
+        <% end %>
+        <%= simple_form_for(@freport) do |f| %>
+            <%= f.hidden_field :is_known, value: false %>
+            <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= button_tag "Ich Wusste NICHT!", type: 'submit', class: "button btn-danger", remote: true %>
+        <% end %>
+    </div>
 </div>
 <script>
-let buttons = document.getElementsByClassName("flip");
-let textField = document.getElementById("user-guess-text-area")
-let card = document.getElementById("flip-card");
+    let buttons = document.getElementsByClassName("flip");
+    let textField = document.getElementById("user-guess-text-area")
+    let card = document.getElementById("flip-card");
 
-Array.from(buttons).forEach((button) => {
-    button.addEventListener('click', function(event) {
-       banana()
+    Array.from(buttons).forEach((button) => {
+        button.addEventListener('click', function (event) {
+            banana()
+        });
     });
-});
 
-document.addEventListener('keydown', (e) => {
-    if (event.key === "Enter") {
-        event.preventDefault()
-        banana()
+    document.addEventListener('keydown', (e) => {
+        if (event.key === "Enter") {
+            event.preventDefault()
+            banana()
+        }
+    });
 
-    }
-});
-
-function banana(){
-     let userGuess = textField.value
+    function banana() {
+        let userGuess = textField.value
         card.classList.toggle("flipped-css");
-        document.getElementById("guessDestination").innerHTML = userGuess;
-}
+        document.getElementById("guessDestination").innerHTML = "Deine Antwort: " + userGuess;
+        document.getElementById("buttonsDiv").classList.toggle("buttonsDiv");
+    }
 </script>
