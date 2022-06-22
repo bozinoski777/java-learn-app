@@ -1,6 +1,13 @@
 <div class="container">
     <%= render "shared/progressbar", correct: @correctFlash, total: @totalFlash, ratio: @ratioFl %>
-    <div class="mt-5 row justify-content-center">
+    <div class="mt-5 d-flex justify-content-end">
+        <div>
+            <button id="flipButton" class="text-right btn btn-info">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row justify-content-center">
         <div id="flip-card" class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -15,10 +22,6 @@
                                 <p><%= @flashcard.question.html_safe %></p>
                             </div>
                             <textarea class="form-control" id="user-guess-text-area" rows="4" placeholder="Schreibe deine Antwort hier(Enter)"></textarea>
-                            <button class="flip btn btn-info flip-button">
-                                <i class="fa-solid fa-arrows-rotate"></i>
-                                flip card
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -35,10 +38,6 @@
                             </div>
                             <p></p>
                             <p id="guessDestination"></p>
-                            <button class="flip btn btn-info flip-button">
-                                <i class="fa-solid fa-arrows-rotate"></i>
-                                flip card
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -63,15 +62,14 @@
     </div>
 </div>
 <script>
-    let buttons = document.getElementsByClassName("flip");
+    let flipButton = document.getElementById("flipButton");
     let textField = document.getElementById("user-guess-text-area")
     let card = document.getElementById("flip-card");
 
-    Array.from(buttons).forEach((button) => {
-        button.addEventListener('click', function (event) {
-            banana()
-        });
+    flipButton.addEventListener('click', function (event) {
+        banana()
     });
+
 
     document.addEventListener('keydown', (e) => {
         if (event.key === "Enter") {

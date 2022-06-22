@@ -1,6 +1,6 @@
 .flip-card{
   background:transparent;
-  perspective:1000px;
+  perspective:10000px;
 }
 
 .flip-card-inner{
@@ -9,38 +9,39 @@
   height: 100%;
   transition: transform 0.9s;
   transform-style: preserve-3d;
+  overflow: visible !important;
 }
 
 
 .flipped-css .flip-card-inner{
- transform:rotateY(180deg);
+  transform:rotateY(180deg);
 }
 
 .flip-card-back , .flip-card-front{
- position: absolute;
- width: 100%;
- height: fit-content;
- -webkit-backface-visibility: hidden;
- backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .flip-card-front{
- color: black;
+  color: black;
+  top: -10px;
 }
 
 .flip-card-back{
- color: black;
- transform:rotateY(180deg)
+  color: black;
+  transform:rotateY(180deg)
+
 }
 
 .flip-card-back{
-  border: 1px solid #ECECEC;
   border-radius: 3px;
   min-height: 250px;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
 }
 
 .flashcard-container {
@@ -110,4 +111,8 @@
 .buttonsDiv {
   opacity: 0;
   transition: transform 0.9s;
+}
+
+#flipButton {
+  width: 50px;
 }
