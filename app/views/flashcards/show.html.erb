@@ -21,7 +21,7 @@
                             <div class="flashcard-game-card-content-markdown">
                                 <p><%= @flashcard.question.html_safe %></p>
                             </div>
-                            <textarea class="form-control" id="user-guess-text-area" rows="4" placeholder="Schreibe deine Antwort hier(Enter)"></textarea>
+                            <textarea class="form-control" id="user-guess-text-area" rows="4" placeholder="Schreibe deine Antwort hier (Ctrl + Enter)"></textarea>
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,11 @@
 
 
     document.addEventListener('keydown', (e) => {
-        if (event.key === "Enter") {
-            event.preventDefault()
+        // if (event.key === "Enter") {
+        //     event.preventDefault()
+        // }
+
+        if(event.ctrlKey && event.key =='Enter'){
             banana()
         }
     });
@@ -82,6 +85,7 @@
         let userGuess = textField.value
         card.classList.toggle("flipped-css");
         document.getElementById("guessDestination").innerHTML = "Deine Antwort: " + userGuess;
+        document.getElementById("buttonsDiv").classList.toggle("buttonsFadeDiv");
         document.getElementById("buttonsDiv").classList.toggle("buttonsDiv");
     }
 </script>
