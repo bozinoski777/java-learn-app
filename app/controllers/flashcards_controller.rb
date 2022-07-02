@@ -5,7 +5,7 @@ class FlashcardsController < ApplicationController
         @freport = Freport.new
         @correctFlash = Freport.where(:is_known => "true", :user_id => current_user.id).count
         @totalFlash = Flashcard.count
-        @ratioFl = (@correctFlash / @totalFlash.to_f) * 100
+        @ratioFl = (@correctFlash / @totalFlash.to_f).round(2) * 100
     end
 
 end

@@ -1,39 +1,41 @@
 <%  params[:category].present? ? img_within = @images[params[:category].to_sym] : img_within = "https://res.cloudinary.com/dj9iphc8u/image/upload/c_scale,w_963/v1653988703/Sopra_Steria/goran-ivos-TorAcb4AQRc-unsplash_tw3czs.jpg" %>
 <%  params[:category].present? ? title_within = params[:category] : title_within = "Material" %>
 <%= render 'shared/index_banner', title_within: title_within, img_within: img_within %>
-<nav class="nav nav-tabs justify-content-center">
-  <li class="nav-item">
-    <a class="h5 nav-link <%= params[:category] == "Java Building Blocks" ? "active underline text-dark font-weight-bold" : "text-warning" %> "data-turbolinks="false" href="/materials?category=Java+Building+Blocks">Java Building Blocks</a>
-  </li>
-  <li class="nav-item">
-    <a class="h5 nav-link <%= params[:category] == "Operators and Statements" ? "active underline text-dark font-weight-bold" : "text-warning" %> "data-turbolinks="false" href="/materials?category=Operators+and+Statements">Operators and Statements</a>
-  </li>
-  <li class="nav-item">
-    <a class="h5 nav-link <%= params[:category] == "Core Java APIs" ? "active underline text-dark font-weight-bold" : "text-warning" %> "data-turbolinks="false" href="/materials?category=Core+Java+APIs">Core Java APIs</a>
-  </li>
-  <li class="nav-item">
-    <a class="h5 nav-link <%= params[:category] == "Methods and Encapsulation" ? "active underline text-dark font-weight-bold" : "text-warning" %> "data-turbolinks="false" href="/materials?category=Methods+and+Encapsulation">Methods and Encapsulation</a>
-  </li>
-  <li class="nav-item">
-    <a class="h5 nav-link <%= params[:category] == "Class Design" ? "active underline text-dark font-weight-bold" : "text-warning" %> "data-turbolinks="false" href="/materials?category=Class+Design">Class Design</a>
-  </li>
-  <li class="nav-item">
-    <a class="h5 nav-link <%= params[:category] == "Exceptions" ? "active underline text-dark font-weight-bold" : "text-warning" %> "data-turbolinks="false" href="/materials?category=Exceptions">Exceptions</a>
-  </li>
-</nav>
-<div style="background-color: #F4F4F4">
-  <% if params[:category].present?%>
+<% if params[:category].present?%>
+  <nav class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="h5 nav-link <%= params[:category] == "Java Building Blocks" ? "active underline text-dark font-weight-bold" : "orange" %> "data-turbolinks="false" href="/materials?category=Java+Building+Blocks">Java Building Blocks</a>
+    </li>
+    <li class="nav-item">
+      <a class="h5 nav-link <%= params[:category] == "Operators and Statements" ? "active underline text-dark font-weight-bold" : "orange" %> "data-turbolinks="false" href="/materials?category=Operators+and+Statements">Operators and Statements</a>
+    </li>
+    <li class="nav-item">
+      <a class="h5 nav-link <%= params[:category] == "Core Java APIs" ? "active underline text-dark font-weight-bold" : "orange" %> "data-turbolinks="false" href="/materials?category=Core+Java+APIs">Core Java APIs</a>
+    </li>
+    <li class="nav-item">
+      <a class="h5 nav-link <%= params[:category] == "Methods and Encapsulation" ? "active underline text-dark font-weight-bold" : "orange" %> "data-turbolinks="false" href="/materials?category=Methods+and+Encapsulation">Methods and Encapsulation</a>
+    </li>
+    <li class="nav-item">
+      <a class="h5 nav-link <%= params[:category] == "Class Design" ? "active underline text-dark font-weight-bold" : "orange" %> "data-turbolinks="false" href="/materials?category=Class+Design">Class Design</a>
+    </li>
+    <li class="nav-item">
+      <a class="h5 nav-link <%= params[:category] == "Exceptions" ? "active underline text-dark font-weight-bold" : "orange" %> "data-turbolinks="false" href="/materials?category=Exceptions">Exceptions</a>
+    </li>
+  </nav>
+  <div style="background-color: #F4F4F4">
     <div class="col-8 offset-2 justify-content-center">
       <% @materials.uniq(&:sub_category).each do |sub_category| %>
         <% if params[:category] == sub_category.category %>
-          <h1 class="pt-4"><%= sub_category.sub_category.html_safe %></h1>
+          <div class="text-center">
+            <h1 class="box"><%= sub_category.sub_category.html_safe %></h1>
+          </div>
         <% end %>
         <% banana = [] %>
           <% @materials.each do |material| %>
             <% if params[:category] == material.category && if sub_category.sub_category == material.sub_category%> 
-            <%= banana.include?(material.title) ? "" : "<h4 class=\"mb-0 mt-4\">".html_safe + material.title.html_safe + "</h4>".html_safe  %>
+            <%= banana.include?(material.title) ? "" : "<h4 class=\"m-2\">".html_safe + material.title.html_safe + "</h4>".html_safe  %>
               <% banana << material.title %> 
-              <div class="card-material" >
+              <div class="card-material m-2" >
                 <div class="container-fluid">
                   <div class="card-material-infos">
                     <p><%= material.content.html_safe %></p>
@@ -45,7 +47,7 @@
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
                             <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 100 %>
-                              <i style="font-size: 30px;" data-id="<%= material.id %>" class="smileyButton fa-regular fa-face-grin-beam position-absolute top-50 start-50 translate-middle text-warning"></i>
+                              <i style="font-size: 30px;" data-id="<%= material.id %>" class="smileyButton fa-regular fa-face-grin-beam position-absolute top-50 start-50 translate-middle orange"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id %>" class="smileyButton fa-regular fa-face-grin-beam position-absolute top-50 start-50 translate-middle"></i>
                             <% end %>
@@ -59,7 +61,7 @@
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
                             <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 75 %>
-                              <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-smile position-absolute top-50 start-50 translate-middle text-warning"></i>
+                              <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-smile position-absolute top-50 start-50 translate-middle orange"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-smile position-absolute top-50 start-50 translate-middle"></i>
                             <% end %>
@@ -73,7 +75,7 @@
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
                             <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 25 %>
-                              <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-meh position-absolute top-50 start-50 translate-middle text-warning"></i>
+                              <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-meh position-absolute top-50 start-50 translate-middle orange"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-meh position-absolute top-50 start-50 translate-middle"></i>
                             <% end %>
@@ -87,7 +89,7 @@
                           <%= f.hidden_field :user_id, value: current_user.id %>
                           <%= button_tag type: 'submit', class: "button my-button", style: "display: contents;", remote: true do %>
                             <% if @mreports.exists?(material_id: material.id, :user_id => current_user.id) && @mreports.where(material_id: material.id)['material_confidence'.to_i].material_confidece == 0 %>
-                              <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-frown position-absolute top-50 start-50 translate-middle text-warning"></i>
+                              <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-frown position-absolute top-50 start-50 translate-middle orange"></i>
                             <% else %>
                               <i style="font-size: 30px;" data-id="<%= material.id%>" class="smileyButton fa-regular fa-face-frown position-absolute top-50 start-50 translate-middle"></i>
                             <% end %>
@@ -104,7 +106,20 @@
       <% end%>
     </div>
   <% else %>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Java+Building+Blocks">Java Building Blocks</a>
+          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Operators+and+Statements">Operators and Statements</a>
+          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Core+Java+APIs">Core Java APIs</a>
+      </div>
+      <div class="col-6">
+          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Methods+and+Encapsulation">Methods and Encapsulation</a>
+          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Class+Design">Class Design</a>
+          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Exceptions">Exceptions</a>
+      </div>
+    </div>
+  </div>
   <% end %>
 
 </div>
@@ -117,9 +132,9 @@
       let clickedID = event.currentTarget.dataset.id;
       let clickedButtonGroup = document.querySelectorAll(`[data-id="${clickedID}"]`)
       for (let clickedButton of clickedButtonGroup) {
-        clickedButton.classList.remove("text-warning");
+        clickedButton.classList.remove("orange");
       }
-      button.classList.toggle("text-warning");
+      button.classList.toggle("orange");
       // button.classList.remove("rating_card");
     })
   }

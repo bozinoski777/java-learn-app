@@ -1,0 +1,33 @@
+.box {
+    --c: -webkit-radial-gradient(top left, 2em 45px, #EF2D20 16%, #F27D26 50%, transparent), -webkit-radial-gradient(bottom right, 2em 45px, #EF2D20 16%, #F27D26 50%, transparent);
+    --w:30px;
+    --b:4px;
+    padding:15px; /* space for the border */
+    
+    position:relative;
+    /*Irrelevant code*/  
+    box-sizing:border-box;
+    margin:5px;
+    display:inline-flex;
+    font-size:30px;
+    justify-content:center;
+    align-items:center;
+    line-height:30px;
+}
+.box::before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:var(--c,red);
+    --g:#0000 90deg,#000 0;
+    -webkit-mask:
+        conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--g)) 0    0,
+        conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--g)) 100% 100%;
+    -webkit-mask-size:var(--w) var(--w);
+    background-origin:border-box;
+    -webkit-mask-repeat:no-repeat;
+ 
+}
