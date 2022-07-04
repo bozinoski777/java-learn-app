@@ -9,6 +9,15 @@ class MaterialsController < ApplicationController
                     "Class Design": "https://res.cloudinary.com/dj9iphc8u/image/upload/c_scale,w_970/v1653941149/Sopra_Steria/arif-riyanto-vJP-wZ6hGBg-unsplash_imyzld.jpg",
                     "Exceptions": "https://res.cloudinary.com/dj9iphc8u/image/upload/c_scale,w_1140/v1653941153/Sopra_Steria/sigmund-Im_cQ6hQo10-unsplash_s55hou.jpg"}
         @mreports= Mreport.all
+        @materialsByUser = Mreport.where(user_id: current_user)
+        # summOfReviewedMaterials = {}
+        # sum = 0
+        # @materialsByUser.each do |material| 
+        #     summOfReviewedMaterials[category] = sum
+        #     category = @materials.where(id: material.id)[0].category
+        #     sum += 1
+        # end
+        # raise
     end
 
 

@@ -33,7 +33,7 @@
         <% banana = [] %>
           <% @materials.each do |material| %>
             <% if params[:category] == material.category && if sub_category.sub_category == material.sub_category%> 
-            <%= banana.include?(material.title) ? "" : "<h4 class=\"m-2\">".html_safe + material.title.html_safe + "</h4>".html_safe  %>
+            <%= banana.include?(material.title) ? "" : "<h4 class=\"text-center mt-3\">".html_safe + material.title.html_safe + "</h4>".html_safe  %>
               <% banana << material.title %> 
               <div class="card-material m-2" >
                 <div class="container-fluid">
@@ -106,17 +106,32 @@
       <% end%>
     </div>
   <% else %>
-  <div class="container">
+  <div class="d-flex justify-content-center">
     <div class="row">
       <div class="col-6">
-          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Java+Building+Blocks">Java Building Blocks</a>
-          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Operators+and+Statements">Operators and Statements</a>
-          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Core+Java+APIs">Core Java APIs</a>
+          <div class="row m-3 text-center ">
+            <div class="progress" style="height: 5px;">
+              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <a class="btn material-category"data-turbolinks="false" href="/materials?category=Java+Building+Blocks">Java Building Blocks</a>
+          </div>
+          <div class="row m-3">
+            <a class="btn material-category"data-turbolinks="false" href="/materials?category=Operators+and+Statements">Operators and Statements</a>
+          </div>
+          <div class="row m-3">
+            <a class="btn material-category"data-turbolinks="false" href="/materials?category=Core+Java+APIs">Core Java APIs</a>
+          </div>
       </div>
       <div class="col-6">
-          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Methods+and+Encapsulation">Methods and Encapsulation</a>
-          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Class+Design">Class Design</a>
-          <a class="h5 nav-link orange "data-turbolinks="false" href="/materials?category=Exceptions">Exceptions</a>
+          <div class="row m-3">
+            <a class="btn material-category"data-turbolinks="false" href="/materials?category=Methods+and+Encapsulation">Methods and Encapsulation</a>
+          </div>
+          <div class="row m-3">
+            <a class="btn material-category"data-turbolinks="false" href="/materials?category=Class+Design">Class Design</a>
+          </div>
+          <div class="row m-3">
+            <a class="btn material-category"data-turbolinks="false" href="/materials?category=Exceptions">Exceptions</a>
+          </div>
       </div>
     </div>
   </div>
