@@ -1,12 +1,11 @@
 <div style="background-color: #F4F4F4;">
     <div class="container">
-        <%= render "shared/progressbar", correct: @correctFlash, total: @totalFlash, ratio: @ratioFl %>
-        <div class="mt-5 d-flex justify-content-end">
-            <div>
-                <button id="flipButton" class="text-right btn btn-info">
-                    <i class="fa-solid fa-arrows-rotate"></i>
-                </button>
-            </div>
+        <div class="mt-4">
+            <h1><%= @flashcard.category  %></h1>
+            <%= render "shared/progressbar", correct: @correctFlash, total: @totalFlash, ratio: @ratioFl %>
+        </div>
+        <div class="mt-3 d-flex justify-content-end">
+            <div></div>
         </div>
         <div class="row justify-content-center">
             <div id="flip-card" class="flip-card">
@@ -30,12 +29,12 @@
                         <div class="flashcard-container">
                             <div class="flashcard-game-card-header">
                                 <div class="flashcard-game-card-title">
-                                    <h4><%=@flashcard.category %></h4>
+                                    <h4><%= @flashcard.category %></h4>
                                 </div>
                             </div>
                             <div class="flashcard-game-card-content">
                                 <div class="flashcard-game-card-content-markdown">
-                                    <p><%=  @flashcard.answer.html_safe %></p>
+                                    <p><%= @flashcard.answer.html_safe %></p>
                                 </div>
                                 <p></p>
                                 <p id="guessDestination"></p>
@@ -46,25 +45,31 @@
             </div>
         </div>
     </div>
-    <div class="mt-4 container">
-        <div id="buttonsDiv" class="mt-5 d-flex justify-content-center buttonsDiv">
-            <%= simple_form_for(@freport) do |f| %>
-                <%= f.hidden_field :is_known, value: true %>
-                <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= button_tag "Ich Wusste es!", type: 'submit', class: "button btn-success", remote: true %>
-            <% end %>
-            <%= simple_form_for(@freport) do |f| %>
-                <%= f.hidden_field :is_known, value: false %>
-                <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= button_tag "Ich Wusste NICHT!", type: 'submit', class: "button btn-danger", remote: true %>
-            <% end %>
+    <div class="container">
+        <div class="mt-4 row">
+            <div class="col-11" style="height:40vh;">
+                <div id="buttonsDiv" class="buttonsDiv d-flex flex-row-reverse">
+                    <%= simple_form_for(@freport) do |f| %>
+                        <%= f.hidden_field :is_known, value: true %>
+                        <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
+                        <%= f.hidden_field :user_id, value: current_user.id %>
+                        <%= button_tag "Gewusst!", type: 'submit', class: "m-2 button btn btn-gradient-gruen", remote: true %>
+                    <% end %>
+                    <%= simple_form_for(@freport) do |f| %>
+                        <%= f.hidden_field :is_known, value: false %>
+                        <%= f.hidden_field :flashcards_id, value: @flashcard.id %>
+                        <%= f.hidden_field :user_id, value: current_user.id %>
+                        <%= button_tag "Nicht Gewusst", type: 'submit', class: "m-2 button btn btn-gradient-rot", remote: true %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col-1 d-flex flex-row-reverse ">
+                <button id="flipButton" class="m-2 text-right btn btn-gradient-gelb">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
+            </div>
         </div>
     </div>
-
-
-
 
     <script>
         let flipButton = document.getElementById("flipButton");
@@ -81,16 +86,16 @@
             //     event.preventDefault()
             // }
 
-            if(event.ctrlKey && event.key =='Enter'){
+            if (event.ctrlKey && event.key == 'Enter') {
                 banana()
             }
         });
 
         function banana() {
             let userGuess = textField.value
-            if (userGuess == "" || userGuess=="\n" || userGuess=="\n\n") {
+            if (userGuess == "" || userGuess == "\n" || userGuess == "\n\n") {
                 textField.classList.toggle("shake");
-            } else{
+            } else {
                 card.classList.toggle("flipped-css");
                 document.getElementById("guessDestination").innerHTML = "Deine Antwort: " + userGuess;
                 document.getElementById("buttonsDiv").classList.toggle("buttonsFadeDiv");

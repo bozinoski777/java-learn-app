@@ -1,0 +1,43 @@
+.btn-gradient-gruen {
+    color: white;
+    padding: 8px 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    background: linear-gradient(#51d314, #086408);
+    transition: background 0.3s ease;
+    border: 1px solid #39c40f;
+  }
+  
+  .btn-gradient-gruen:hover {
+    background: linear-gradient(#55e015, #0d970d);
+    color: white;
+  }
+
+  .btn-gradient-rot {
+    color: white;
+    padding: 8px 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    background: linear-gradient(#df1212, #880c0c);
+    transition: background 0.3s ease;
+    border: 1px solid #c40f0f;
+  }
+  
+  .btn-gradient-rot:hover {
+    background: linear-gradient(#f01313, #b90e0e);
+    color: white;
+  }
+
+  .btn-gradient-gelb {
+    padding: 8px;
+    border-radius: 4px;
+    background: linear-gradient(#dfd112, #9b860f);
+    transition: background 0.3s ease;
+    border: 1px solid #c4b20f;
+    height: 42px;
+    width: 50px;
+  }
+  
+  .btn-gradient-gelb:hover {
+    background: linear-gradient(#f0ec13, #cabe10);
+  }

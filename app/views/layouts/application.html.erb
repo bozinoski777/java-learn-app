@@ -9,12 +9,13 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body>
+  <body style="background-color: #F4F4F4">
   
   <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
-    <%= yield %>
     
+    <%= yield %>
+        <%= render 'shared/footer' %>
   </body>
 </html>
 
